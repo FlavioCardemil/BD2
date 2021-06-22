@@ -1,5 +1,3 @@
--- Requerimientos
-
 psql
 
 CREATE DATABASE clase02
@@ -8,11 +6,8 @@ CREATE DATABASE clase02
 \SET AUTOCOMMIT off
 
 
--- Solicitud 01
-
 psql -U flavio clase02 < unidad2.sql
 
--- Solicitud 02
 
 BEGIN TRANSACTION;
 
@@ -23,8 +18,6 @@ SELECT * FROM producto WHERE id = 9;
 COMMIT;
 SELECT * FROM producto WHERE id = 9;
 
-
--- Solicitud 03
 
 BEGIN TRANSACTION;
 INSERT INTO compra (cliente_id,fecha) VALUES (2,now());
@@ -47,13 +40,11 @@ ROLLBACK TO SAVEPOINT checkpoint;
 COMMIT;
 SELECT id, stock FROM producto WHERE descripcion = 'producto9';
 
--- Identificar id y consultar de producto1, producto2 y producto8
 
 SELECT id, stock FROM producto WHERE descripcion = 'producto1';
 SELECT id, stock FROM producto WHERE descripcion = 'producto2';
 SELECT id, stock FROM producto WHERE descripcion = 'producto8';
 
---Ingresando transacciones
 
 BEGIN;
 INSERT INTO compra (id, cliente_id, fecha)
@@ -69,8 +60,6 @@ VALUES (35, 2, NOW());
 UPDATE producto SET stock = stock - 3 WHERE id = 8;
 ROLLBACK TO SAVEPOINT checkpoint;
 COMMIT;
-
---Chequear si el stock fue descontado
 
 SELECT stock FROM producto WHERE id = 1;
 SELECT stock FROM producto WHERE id = 2;
